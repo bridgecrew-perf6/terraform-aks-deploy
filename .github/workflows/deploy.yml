@@ -1,5 +1,6 @@
 name: terraform-workflow
 on: [push]
+  branch: poc
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
   ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -42,7 +43,3 @@ jobs:
       - name: Terraform plan
         id: plan
         run: terraform plan -var-file=./environments/sandbox/sandbox.tfvars -out tfplan
-
-      - name: Terraform apply
-        id: apply
-        run: terraform apply  -auto-approve tfplan
