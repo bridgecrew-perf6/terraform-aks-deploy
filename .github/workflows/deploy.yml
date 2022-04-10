@@ -1,7 +1,25 @@
 name: terraform-workflow
 on: [push]
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 jobs:
-  terraform-init:
+  git-init:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+  terraform-init:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: $(echo '.terraform-version')
+      - run: terraform version
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: false
+      - run: terraform init
+      - run: terraform validate
