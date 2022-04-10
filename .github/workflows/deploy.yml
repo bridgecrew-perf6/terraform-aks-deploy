@@ -45,3 +45,7 @@ jobs:
       - name: Terraform plan
         id: plan
         run: terraform plan -var-file=./environments/sandbox/sandbox.tfvars -out tfplan
+
+      - name: Terraform apply
+        id: apply
+        run: terraform apply -auto-approve tfplan
