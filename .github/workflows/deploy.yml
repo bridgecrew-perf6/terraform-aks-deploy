@@ -47,6 +47,10 @@ jobs:
         working-directory: ./
 
     steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: poc
+      -
       - run: pwd && ls -al
       - name: Terraform plan
         id: plan
