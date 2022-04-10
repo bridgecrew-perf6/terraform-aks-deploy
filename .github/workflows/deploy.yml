@@ -43,6 +43,7 @@ jobs:
         working-directory: ./
 
     steps:
+      - run: pwd && ls -al
       - name: Terraform plan
         id: plan
         run: terraform plan -var-file=./environments/sandbox/sandbox.tfvars -out tfplan
