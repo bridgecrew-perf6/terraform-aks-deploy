@@ -13,6 +13,8 @@ jobs:
         working-directory: ./
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: poc
 
       - uses: hashicorp/setup-terraform@v1
         with:
