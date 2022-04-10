@@ -16,9 +16,9 @@ jobs:
 
       - uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: 0.12.31
+          terraform_version: 1.1.8
 
-      - name: Terraform Version
+      - name: Terraform version
         id: version
         run: terraform version
 
@@ -34,3 +34,14 @@ jobs:
       - name: Terraform validate
         id: validate
         run: terraform validate
+
+  terraform-plan:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+
+    steps:
+      - name: Terraform plan
+        id: plan
+        run: terraform plan -var-file=./environments/sandbox/sandbox.tfvars -out tfplan
