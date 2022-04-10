@@ -1,6 +1,7 @@
 name: terraform-workflow
 on: [push]
-  branch: poc
+  branches:
+    - poc
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
   ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
