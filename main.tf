@@ -22,7 +22,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   identity {
-    type = "UserAssigned"
+    type                      = "UserAssigned"
     user_assigned_identity_id = azurerm_user_assigned_identity.mi.id
   }
 
