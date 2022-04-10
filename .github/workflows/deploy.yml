@@ -16,6 +16,8 @@ jobs:
         with:
           ref: poc
 
+      - run: pwd && ls -al
+
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.1.8
