@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: {{ env.GITHUB_WORKSPACE }}
+        working-directory: ./
     steps:
       - uses: hashicorp/setup-terraform@v1
         with:
