@@ -1,0 +1,7 @@
+name: terraform-workflow
+on: [push]
+jobs:
+  terraform-init:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
