@@ -10,16 +10,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
   terraform-init:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: {{ env.GITHUB_WORKSPACE }}
     steps:
       - uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: $(echo '.terraform-version')
-      - run: terraform version
+          terraform_version: 0.12.31
+
+      - name: Terraform Version
+        id: version
+        run: terraform version
+
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
         continue-on-error: false
-      - run: terraform init
-      - run: terraform validate
+
+      - name: Terraform init
+        id: init
+        run: terraform init
+
+      - name: Terraform validate
+        id: validate
+        run: terraform validate
