@@ -6,17 +6,14 @@ env:
   ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 jobs:
-  git-init:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
   terraform-init:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./
     steps:
+      - uses: actions/checkout@v3
+
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.12.31
