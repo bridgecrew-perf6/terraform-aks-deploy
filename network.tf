@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "network" {
   location = "uksouth"
-  name     = "aks-${var.environment}-network-rg"
+  name     = "aks-  ${var.environment}-network-rg"
 }
 
 resource "azurerm_virtual_network" "aks" {

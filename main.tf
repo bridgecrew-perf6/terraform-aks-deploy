@@ -33,19 +33,20 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
 
   default_node_pool {
-    name                 = "linux"
-    type                 = "VirtualMachineScaleSets"
-    node_count           = 1
-    vm_size              = "Standard_D2_v2"
-    os_disk_type         = "Managed"
-    os_disk_size_gb      = "128"
-    vnet_subnet_id       = azurerm_subnet.aks.id
-    enable_auto_scaling  = true
-    min_count            = 1
-    max_count            = 2
-    max_pods             = 100
-    zones                = []
-    orchestrator_version = "1.21.7"
+    name                  = "linux"
+    type                  = "VirtualMachineScaleSets"
+    node_count            = 1
+    vm_size               = "Standard_D2_v2"
+    os_disk_type          = "Managed"
+    os_disk_size_gb       = "128"
+    vnet_subnet_id        = azurerm_subnet.aks.id
+    enable_auto_scaling   = true
+    min_count             = 1
+    max_count             = 2
+    max_pods              = 100
+    zones                 = []
+    orchestrator_version  = "1.21.7"
+    enable_node_public_ip = false
 
   }
 
