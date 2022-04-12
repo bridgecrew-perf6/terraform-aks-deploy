@@ -15,7 +15,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   dns_prefix          = "hax-aks"
   kubernetes_version  = "1.21.7"
 
-  node_resource_group = ""
+  node_resource_group = azurerm_resource_group.node.name
 
   sku_tier = "Free"
 
