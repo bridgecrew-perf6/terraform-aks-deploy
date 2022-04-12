@@ -3,11 +3,6 @@ resource "azurerm_resource_group" "cluster" {
   name     = "aks-${var.environment}"
 }
 
-resource "azurerm_resource_group" "node" {
-  location = "uksouth"
-  name     = "aks-nodepool-${var.environment}"
-}
-
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "aks-${var.environment}"
   location            = azurerm_resource_group.cluster.location
@@ -15,7 +10,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   dns_prefix          = "hax-aks"
   kubernetes_version  = "1.21.7"
 
-  node_resource_group = azurerm_resource_group.node.name
+  node_resource_group = "aks-nodepool-${var.environment}"
 
   sku_tier = "Free"
 
