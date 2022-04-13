@@ -36,9 +36,10 @@ resource "kubernetes_cluster_role_binding" "reader_nodes" {
 
 //read-only access to all resources
 
-resource "kubernetes_cluster_role" "read-only" {
+resource "kubernetes_role" "read-only" {
   metadata {
     name = "read-only-access"
+    namespace = "azure-vote"
   }
 
   rule {
@@ -75,8 +76,8 @@ resource "kubernetes_role_binding" "read-only" {
 
   }
   subject {
-    kind      = "Group"
-    name      = "system:authenticated"
+    kind      = "User"
+    name      = "mariam.orisawayi@hybridaccess.net"
     api_group = "rbac.authorization.k8s.io"
   }
 }
