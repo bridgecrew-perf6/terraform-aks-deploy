@@ -76,5 +76,6 @@ resource "kubernetes_role_binding" "read-only" {
     kind      = "User"
     name      = "mariam.orisawayi@hybridaccess.net"
     api_group = "rbac.authorization.k8s.io"
+    namespace = "azure-vote"
   }
 }
