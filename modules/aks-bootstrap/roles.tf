@@ -86,8 +86,8 @@ resource "kubernetes_role_binding" "read-only" {
 
   }
   subject {
-    kind      = "User"
-    name      = "mariam.orisawayi@hybridaccess.net"
+    kind      = "Group"
+    name      = "AKS-Devs"
     api_group = "rbac.authorization.k8s.io"
   }
 }
