@@ -52,7 +52,7 @@ resource "kubernetes_cluster_role" "read-only" {
   }
 
   rule {
-    api_groups = [""]
+    api_groups = ["*"]
     resources = ["*"]
     verbs = [
       "get",
