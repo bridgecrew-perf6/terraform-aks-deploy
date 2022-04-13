@@ -33,3 +33,48 @@ resource "kubernetes_cluster_role_binding" "reader_nodes" {
     api_group = "rbac.authorization.k8s.io"
   }
 }
+
+//read-only access to all resources
+
+resource "kubernetes_cluster_role" "read-only" {
+  metadata {
+    name = "read-only-access"
+  }
+
+  rule {
+    api_groups = ["*"]
+    resources = [
+      "pods",
+    ]
+    verbs = [
+      "delete"
+    ]
+  }
+
+  rule {
+    api_groups = ["*"]
+    resources = ["*"]
+    verbs = [
+      "get",
+      "list",
+      "watch"
+    ]
+  }
+
+}
+
+resource "kubernetes_role_binding" "read-only" {
+  metadata {
+    name = "read-only"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = kubernetes_cluster_role.read-only.metadata[0].name
+  }
+  subject {
+    kind      = "User"
+    name      = "mariam.orisawayi@hybridaccess.net"
+    api_group = "rbac.authorization.k8s.io"
+  }
+}
