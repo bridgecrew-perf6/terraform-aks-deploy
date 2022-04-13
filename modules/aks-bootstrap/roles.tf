@@ -66,16 +66,17 @@ resource "kubernetes_cluster_role" "read-only" {
 resource "kubernetes_role_binding" "read-only" {
   metadata {
     name = "read-only"
+    namespace = "azure-vote"
   }
   role_ref {
     api_group = "rbac.authorization.k8s.io"
     kind      = "ClusterRole"
     name      = kubernetes_cluster_role.read-only.metadata[0].name
+
   }
   subject {
     kind      = "User"
     name      = "mariam.orisawayi@hybridaccess.net"
     api_group = "rbac.authorization.k8s.io"
-    namespace = "azure-vote"
   }
 }
