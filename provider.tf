@@ -8,7 +8,8 @@ terraform {
     }
 
     kubernetes = {
-
+      source  = "hashicorp/kubernetes"
+      version = "2.10.0"
     }
   }
 
@@ -24,4 +25,12 @@ terraform {
 
 provider "azurerm" {
   features {}
+}
+
+provider "kubernetes" {
+  load_config_file       = false
+  host                   = local.kube-config.kube_host
+  client_certificate     = local.kube-config.kube_client_certificate
+  client_key             = local.kube-config.kube_client_key
+  cluster_ca_certificate = local.kube-config.kube_cluster_ca_certificate
 }
