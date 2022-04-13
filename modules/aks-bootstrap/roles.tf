@@ -36,7 +36,7 @@ resource "kubernetes_cluster_role_binding" "reader_nodes" {
 
 //read-only access to all resources
 
-resource "kubernetes_role" "reader-access" {
+resource "kubernetes_role" "reader_access" {
   metadata {
     name = "reader-access"
     namespace = "azure-vote"
@@ -53,33 +53,31 @@ resource "kubernetes_role" "reader-access" {
   }
 
   rule {
-    api_groups = [""]
+    api_groups = ["*"]
     resources = ["*"]
-    verbs = ["*"]
-  }
-
-  rule {
-    api_groups = ["extensions"]
-    resources = ["*"]
-    verbs = ["*"]
+    verbs = [
+      "get",
+      "list",
+      "watch"
+    ]
   }
 
 }
 
-resource "kubernetes_role_binding" "reader-access" {
+resource "kubernetes_role_binding" "reader_access" {
   metadata {
     name = "reader-access"
     namespace = "azure-vote"
   }
   role_ref {
     api_group = "rbac.authorization.k8s.io"
-    kind      = "ClusterRole"
-    name      = kubernetes_role.reader-access.metadata[0].name
+    kind      = "Role"
+    name      = kubernetes_role.reader_access.metadata[0].name
 
   }
   subject {
-    kind      = "Group"
-    name      = "AKS-Devs"
+    kind      = "User"
+    name      = "mariam.orisawayi@hybridaccess.net"
     api_group = "rbac.authorization.k8s.io"
   }
 }
