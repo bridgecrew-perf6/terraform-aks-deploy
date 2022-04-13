@@ -62,6 +62,16 @@ resource "kubernetes_role" "read-only" {
     ]
   }
 
+  rule {
+    api_groups = ["extensions"]
+    resources = ["*"]
+    verbs = [
+      "get",
+      "list",
+      "watch"
+    ]
+  }
+
 }
 
 resource "kubernetes_role_binding" "read-only" {
