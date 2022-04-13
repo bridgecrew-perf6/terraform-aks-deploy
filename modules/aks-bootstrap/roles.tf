@@ -38,7 +38,7 @@ resource "kubernetes_cluster_role_binding" "reader_nodes" {
 
 resource "kubernetes_role" "reader_access" {
   metadata {
-    name = "reader-access"
+    name = "read-only-access"
     namespace = "azure-vote"
   }
 
@@ -66,7 +66,7 @@ resource "kubernetes_role" "reader_access" {
 
 resource "kubernetes_role_binding" "reader_access" {
   metadata {
-    name = "reader-access"
+    name = "read-only-access"
     namespace = "azure-vote"
   }
   role_ref {
