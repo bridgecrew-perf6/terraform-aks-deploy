@@ -39,7 +39,6 @@ resource "kubernetes_cluster_role_binding" "reader_nodes" {
 resource "kubernetes_cluster_role" "reader_access" {
   metadata {
     name = "read-only-access"
-    namespace = "azure-vote"
   }
 
   rule {
