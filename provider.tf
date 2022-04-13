@@ -28,7 +28,6 @@ provider "azurerm" {
 }
 
 provider "kubernetes" {
-  load_config_file       = false
   host                   = local.kube-config.kube_host
   client_certificate     = local.kube-config.kube_client_certificate
   client_key             = local.kube-config.kube_client_key
